@@ -25,7 +25,7 @@ function PostList() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/posts')
+    fetch('https://instagram-backend-2zyz.onrender.com/api/posts')
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -39,7 +39,7 @@ function PostList() {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/api/posts/${id}`)
+    axios.delete(`https://instagram-backend-2zyz.onrender.com/api/posts/${id}`)
       .then(() => setPosts(posts.filter(post => post._id !== id)))
       .catch(err => console.error(err));
   };
@@ -76,7 +76,7 @@ function CreatePost() {
     formData.append('description', description);
     formData.append('image', image);
 
-    axios.post('http://localhost:5000/api/posts', formData)
+    axios.post('https://instagram-backend-2zyz.onrender.com/api/posts', formData)
       .then(() => {
         setTitle('');
         setDescription('');
@@ -130,7 +130,7 @@ function EditPost() {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/posts/${id}`)
+    axios.get(`https://instagram-backend-2zyz.onrender.com/api/posts/${id}`)
       .then(res => {
         setTitle(res.data.title);
         setDescription(res.data.description);
@@ -144,7 +144,7 @@ function EditPost() {
     formData.append('title', title);
     formData.append('description', description);
 
-    axios.put(`http://localhost:5000/api/posts/${id}`, formData)
+    axios.put(`https://instagram-backend-2zyz.onrender.com/api/posts/${id}`, formData)
       .then(() => {
         setTitle('');
         setDescription('');
